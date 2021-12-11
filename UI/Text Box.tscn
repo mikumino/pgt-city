@@ -1,11 +1,42 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/Fonts/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/dialogue_box.png" type="Texture" id=2]
+[ext_resource path="res://UI/Dialogue Box.gd" type="Script" id=3]
 
 [node name="Text Box" type="CanvasLayer"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-color = Color( 1, 0, 0, 1 )
+[node name="Dialogue Box" type="TextureRect" parent="."]
+margin_right = 856.0
+margin_bottom = 480.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Name" type="RichTextLabel" parent="Dialogue Box"]
+margin_left = 200.0
+margin_top = 301.0
+margin_right = 384.0
+margin_bottom = 333.0
+theme = ExtResource( 1 )
+text = "Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="Dialogue Box"]
+margin_left = 216.0
+margin_top = 344.0
+margin_right = 656.0
+margin_bottom = 432.0
+theme = ExtResource( 1 )
+text = "I am a talking NPC. You can talk to me and I will respond. Isn't that super cool!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
