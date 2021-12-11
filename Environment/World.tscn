@@ -210,6 +210,7 @@ position = Vector2( 352, 120 )
 
 [node name="pgt npc" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 400, 216 )
+dialogue_path = "res://UI/dialogues/npc_dialogue.json"
 
 [node name="props" type="TileMap" parent="YSort"]
 tile_set = SubResource( 2 )

@@ -4,18 +4,51 @@ export var dialoguePath = ""
 export (float) var textSpeed = 0.05
 
 var dialogue
+var phraseNum = 0;
+var finished = false
 
 func _ready():
 	$Timer.wait_time = textSpeed
 	dialogue = getDialogue()
+	assert(dialogue, "Dialogue not found")
+	
+func _process(delta):
+	$Indicator.visible = finished
+	if Input.is_action_just_pressed("check"):
+		if finished:
+			nextPhrase()
+		else:
+			$Text.visible_characters = len($Text.text)
 
 func getDialogue():
 	var file = File.new()
-	assert(file.file_exists(dialoguePath), "Dialogue not found") # assert checks for truth and prints otherwise
+	assert(file.file_exists(dialoguePath), "File not found") # assert checks for truth and prints otherwise
 	
 	file.open(dialoguePath, File.READ)
 	var json = file.get_as_text()
 	var output = parse_json(json)
 	
 	if typeof(output) == TYPE_ARRAY:
-		pass
+		return output
+	else:
+		return []
+
+func nextPhrase():
+	if phraseNum >= len(dialogue):
+		queue_free()
+		return
+	finished = false
+	
+	$Name.bbcode_text = dialogue[phraseNum]["Name"]
+	$Text.bbcode_text = dialogue[phraseNum]["Text"]
+	
+	$Text.visible_characters = 0
+	
+	while $Text.visible_characters < len($Text.text):
+		$Text.visible_characters += 1
+		$Timer.start()
+		yield($Timer, "timeout")	# This starts a timer and stops the function until the timer times out
+	
+	finished = true
+	phraseNum += 1
+	return
