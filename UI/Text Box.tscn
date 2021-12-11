@@ -118,5 +118,7 @@ anims/RESET = SubResource( 1 )
 anims/flash = SubResource( 2 )
 
 [node name="Fade" type="AnimationPlayer" parent="Dialogue Box"]
+reset_on_save = false
+method_call_mode = 1
 anims/fade_in = SubResource( 3 )
 anims/fade_out = SubResource( 4 )

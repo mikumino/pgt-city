@@ -10,6 +10,7 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body.get_name() == "Player":
 		body.set_active_object(get_node("."))
+		$Polygon2D.visible = true
 		print("object set")
 
 func interact():
@@ -24,4 +25,5 @@ func interact():
 func _on_Area2D_body_exited(body):
 	if body.get_name() == "Player":
 		body.set_active_object(null)
+		$Polygon2D.visible = false
 		print("reference removed")

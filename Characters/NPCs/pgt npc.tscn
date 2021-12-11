@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Characters/NPCs/pgt.png" type="Texture" id=1]
 [ext_resource path="res://Characters/NPCs/pgt npc.gd" type="Script" id=2]
@@ -9,6 +9,23 @@ height = 6.4
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 45.0004
+
+[sub_resource type="Animation" id=3]
+resource_name = "bounce"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.108819, 1, 9.18959 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -3 ), Vector2( 0, 0 ) ]
+}
 
 [node name="pgt npc" type="StaticBody2D"]
 script = ExtResource( 2 )
@@ -28,6 +45,15 @@ position = Vector2( 0, -14.8 )
 
 [node name="interact" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+offset = Vector2( 0, 3 )
+polygon = PoolVector2Array( -8, -48, 8, -48, 0, -40 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D"]
+autoplay = "bounce"
+anims/bounce = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -206,14 +206,14 @@ tile_data = PoolIntArray( -1245202, 9, 65537, -1245201, 9, 65538, -1245200, 9, 6
 position = Vector2( 168, 160 )
 
 [node name="pgt npc" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 400, 216 )
+position = Vector2( 249, 277 )
 dialogue_path = "res://UI/dialogues/npc_dialogue.json"
 
-[node name="pgt npc2" parent="YSort" instance=ExtResource( 4 )]
+[node name="Cwasaunt" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 352, 129 )
 dialogue_path = "res://UI/dialogues/cwasaunt_dialogue.json"
 
-[node name="Sprite" parent="YSort/pgt npc2" index="0"]
+[node name="Sprite" parent="YSort/Cwasaunt" index="0"]
 texture = ExtResource( 3 )
 
 [node name="props" type="TileMap" parent="YSort"]
@@ -227,4 +227,4 @@ __meta__ = {
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[editable path="YSort/pgt npc2"]
+[editable path="YSort/Cwasaunt"]
