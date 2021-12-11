@@ -16,7 +16,10 @@ func interact():
 	print("interaction success")
 	var dialogue = dialogue_box.instance()
 	dialogue.get_node("Dialogue Box").dialoguePath = dialogue_path
-	get_parent().add_child(dialogue)
+	get_node("/root/World/UI").add_child(dialogue)
+	print("child added")
+	get_node("/root/World/YSort/Player").isFree = false
+
 
 func _on_Area2D_body_exited(body):
 	if body.get_name() == "Player":

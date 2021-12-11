@@ -8,7 +8,7 @@ radius = 5.8
 height = 6.4
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 32.0
+radius = 45.0004
 
 [node name="pgt npc" type="StaticBody2D"]
 script = ExtResource( 2 )

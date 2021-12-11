@@ -11,6 +11,9 @@ func _ready():
 	$Timer.wait_time = textSpeed
 	dialogue = getDialogue()
 	assert(dialogue, "Dialogue not found")
+	nextPhrase()
+	$Fade.play("fade_in")
+	print("dialogue sent")
 	
 func _process(delta):
 	$Indicator.visible = finished
@@ -35,7 +38,9 @@ func getDialogue():
 
 func nextPhrase():
 	if phraseNum >= len(dialogue):
+		$Fade.play("fade_out")
 		queue_free()
+		connect("tree_exited", get_node("/root/World/YSort/Player"), "exit_interaction")
 		return
 	finished = false
 	

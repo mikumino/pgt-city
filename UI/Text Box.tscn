@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Fonts/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/dialogue_box.png" type="Texture" id=2]
@@ -35,12 +35,43 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="Text Box" type="Control"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Dialogue Box" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 856.0
 margin_bottom = 480.0
 texture = ExtResource( 2 )
@@ -65,9 +96,9 @@ __meta__ = {
 
 [node name="Text" type="RichTextLabel" parent="Dialogue Box"]
 margin_left = 216.0
-margin_top = 344.0
+margin_top = 348.0
 margin_right = 656.0
-margin_bottom = 416.0
+margin_bottom = 420.0
 theme = ExtResource( 1 )
 text = "I am a talking NPC. You can talk to me and I will respond. Isn't that super cool! This is the maximum amount of lines I can speak."
 __meta__ = {
@@ -81,5 +112,11 @@ position = Vector2( 0, 208 )
 polygon = PoolVector2Array( 648, 200, 664, 200, 656, 208 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue Box/Indicator"]
+autoplay = "flash"
+reset_on_save = false
 anims/RESET = SubResource( 1 )
 anims/flash = SubResource( 2 )
+
+[node name="Fade" type="AnimationPlayer" parent="Dialogue Box"]
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
