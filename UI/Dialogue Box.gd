@@ -39,6 +39,7 @@ func getDialogue():
 func nextPhrase():
 	if phraseNum >= len(dialogue):
 		$Fade.play("fade_out")
+		yield($Fade, "animation_finished")
 		queue_free()
 		connect("tree_exited", get_node("/root/World/YSort/Player"), "exit_interaction")
 		return
