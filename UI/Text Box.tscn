@@ -73,7 +73,6 @@ __meta__ = {
 }
 
 [node name="Dialogue Box" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 856.0
 margin_bottom = 480.0
 texture = ExtResource( 2 )
